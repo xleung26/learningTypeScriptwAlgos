@@ -58,7 +58,8 @@ class SinglyLinkedList<T> {
   }
 
   get(index: number): NodeInterface<T> | null {
-    if (index < 0 || index >= this.length) return null;let counter: number = 0;
+    if (index < 0 || index >= this.length) return null;
+    let counter: number = 0;
     let current = this.head;
     while (counter !== index){
       current = current.next
@@ -94,6 +95,7 @@ list.push(201)
 list.push(250)
 list.push(350)
 list.print()
+list.set(3, 88)
 console.log('pop',list.pop())
 console.log('push', list.push(5))
 console.log('shift', list.shift())

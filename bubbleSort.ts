@@ -4,7 +4,6 @@ let bubbleSort= (arr: number []): number[] => {
   // init var to equal done to stop for loop when arr is done sorting early
   let done: boolean = true;
   let arrLength = arr.length
-  // max iteration needed to bubble up the largest  number if it happens to start at index 0 is arr.length - 1 times
   for (let i = 0; i < arrLength; i += 1){
     for (let j = 0; j < arrLength; j += 1){
       if (arr[j] > arr[j+1]) {
