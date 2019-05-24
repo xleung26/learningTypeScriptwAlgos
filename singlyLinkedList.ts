@@ -1,6 +1,6 @@
 // ? means optional property
 // TS -  default assumption that properties are public, so need to assign for private and protected
-// <T> - generic 
+// <T> - generic - enforce type consistency. if value inserted was string (ex: 'a') then value for that node should be a string. 
 
 // TODO: add insert and reverse
 
@@ -10,10 +10,12 @@ interface NodeInterface<T> {
 }
 
 class SinglyLinkedList<T> {
+  // set these properties to private, so that only class methods can alter the values
   private head?: NodeInterface<T> = null;
   private tail?: NodeInterface<T>  = null;
   private length: number = 0;
 
+  // methods are public to allow interaction with the class
   push(val: T): SinglyLinkedList<T> {
     let newNode: NodeInterface<T> = { val, next: null }
     if (!this.head) {
@@ -57,6 +59,19 @@ class SinglyLinkedList<T> {
     return currentHead;
   }
 
+  unshift(val: T): SinglyLinkedList<T> {
+    let newNode: NodeInterface<T> = { val, next: null }
+    if (!this.head) {
+      this.head = newNode
+      this.tail = newNode
+    } else {
+      newNode.next = this.head
+      this.head = newNode
+    }
+    this.length += 1
+    return this;
+  }
+
   get(index: number): NodeInterface<T> | null {
     if (index < 0 || index >= this.length) return null;
     let counter: number = 0;
@@ -75,6 +90,35 @@ class SinglyLinkedList<T> {
       return true;
     }
     return false;
+  }
+
+  insert(index: number, val: T): boolean {
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) !!this.unshift(val)
+    if (index === this.length) !!this.push(val)
+    
+    let newNode: NodeInterface<T> = { val, next: null }
+    let prevNode = this.get(index-1)
+    newNode.next = this.get(index)
+    prevNode.next = newNode
+    this.length += 1
+    return true;
+  }
+
+  reverse(): SinglyLinkedList<T> {
+    let current: NodeInterface<T> = this.head
+    this.head = this.tail
+    this.tail = current
+    let next,
+        prev = null;
+
+    for (let i = 0; i < this.length; i += 1){
+      next = current.next
+      current.next = prev
+      prev = current
+      current = next
+    }
+    return this;
   }
 
   print(): void {
@@ -99,4 +143,8 @@ list.set(3, 88)
 console.log('pop',list.pop())
 console.log('push', list.push(5))
 console.log('shift', list.shift())
+console.log('unshift', list.unshift(23))
+list.print()
+list.insert(3, "a")
+list.reverse()
 list.print()
