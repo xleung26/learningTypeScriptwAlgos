@@ -1,0 +1,20 @@
+{
+  "name": "learningTypeScriptwAlgos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "notes.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xleung26/learningTypeScriptwAlgos.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xleung26/learningTypeScriptwAlgos/issues"
+  },
+  "homepage": "https://github.com/xleung26/learningTypeScriptwAlgos#readme"
+}

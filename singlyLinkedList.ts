@@ -6,12 +6,12 @@
 
 interface NodeInterface<T> {
   val: T;
-  next?: NodeInterface<T>;
+  next?: NodeInterface<T> | null;
 }
 
 class SinglyLinkedList<T> {
   // set these properties to private, so that only class methods can alter the values
-  private head?: NodeInterface<T> = null;
+  head?: NodeInterface<T> = null;
   private tail?: NodeInterface<T>  = null;
   private length: number = 0;
 
@@ -131,6 +131,8 @@ class SinglyLinkedList<T> {
     console.log(arr)
   }
 }
+
+export default SinglyLinkedList;
 
 let list = new SinglyLinkedList()
 console.log('push', list.push(5))
